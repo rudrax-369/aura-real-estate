@@ -3,7 +3,6 @@
 import { useRef } from "react";
 import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
 import { MapPin, Maximize, ArrowUpRight } from "lucide-react";
-import Image from "next/image";
 import { Magnetic } from "./Navbar";
 
 interface Property {
@@ -102,14 +101,13 @@ function PropertyCard({ property }: { property: Property }) {
 
       {/* Property Image with reveal Zoom effect */}
       <div className="h-[340px] w-full overflow-hidden relative">
-        <Image
+        {/* Plain <img> used intentionally for static export / GitHub Pages compatibility */}
+        <img
           src={property.image}
           alt={property.title}
-          fill
-          sizes="(max-width: 768px) 100vw, 33vw"
-          className="object-cover transition-transform duration-700 ease-out group-hover:scale-105 filter brightness-95 group-hover:brightness-100"
+          className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 brightness-95 group-hover:brightness-100"
         />
-        
+
         {/* Floating Tag */}
         <div className="absolute top-4 left-4 z-20 flex gap-2">
           <span className="glass-panel px-3 py-1 rounded-full text-[9px] uppercase tracking-widest text-brand-gold border border-brand-gold/20 font-medium">
