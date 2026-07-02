@@ -1,8 +1,9 @@
 "use client";
 
 import { useRef } from "react";
+import Image from "next/image";
 import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
-import { MapPin, Maximize, ArrowUpRight } from "lucide-react";
+import { MapPin, ArrowUpRight } from "lucide-react";
 import { Magnetic } from "./Navbar";
 
 interface Property {
@@ -22,7 +23,7 @@ const properties: Property[] = [
     location: "Monaco, Côte d'Azur",
     price: "$38,500,000 USD",
     area: "9,400 SQ FT",
-    image: "/villa.png",
+    image: "/img1.png",
     features: ["Infinity Pool", "Helipad", "Glass Elevator"],
   },
   {
@@ -31,7 +32,7 @@ const properties: Property[] = [
     location: "Manhattan, NY",
     price: "$45,000,000 USD",
     area: "8,200 SQ FT",
-    image: "/skyscraper.png",
+    image: "/img1.png",
     features: ["360° Terrace", "Private Observatory", "Kinetic Walls"],
   },
   {
@@ -40,7 +41,7 @@ const properties: Property[] = [
     location: "St. Moritz, Swiss Alps",
     price: "$29,000,000 USD",
     area: "7,100 SQ FT",
-    image: "/lake.png",
+    image: "/img1.png",
     features: ["Heated Indoor Spa", "Thermal Glazing", "Floating Deck"],
   },
 ];
@@ -101,11 +102,14 @@ function PropertyCard({ property }: { property: Property }) {
 
       {/* Property Image with reveal Zoom effect */}
       <div className="h-[340px] w-full overflow-hidden relative">
-        {/* Plain <img> used intentionally for static export / GitHub Pages compatibility */}
-        <img
+        <Image
           src={property.image}
           alt={property.title}
-          className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 brightness-95 group-hover:brightness-100"
+          fill
+          sizes="(max-width: 768px) 100vw, 33vw"
+          className="object-cover transition-transform duration-700 ease-out group-hover:scale-105 brightness-95 group-hover:brightness-100"
+          loading="lazy"
+          placeholder="empty"
         />
 
         {/* Floating Tag */}

@@ -12,7 +12,12 @@ const nextConfig: NextConfig = {
   basePath: isProd ? "/aura-real-estate" : "",
   assetPrefix: isProd ? "/aura-real-estate/" : "",
 
-  // Required for static export — disables built-in image optimization
+  // Expose basePath to client-side code (used for <img> src prefixing)
+  env: {
+    NEXT_PUBLIC_BASE_PATH: isProd ? "/aura-real-estate" : "",
+  },
+
+  // Required for static export
   images: {
     unoptimized: true,
   },
